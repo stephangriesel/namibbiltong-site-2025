@@ -1,11 +1,11 @@
 /* =========================================
-   Style.css - Complete Code (April 27, 2025 - 16:57 CEST)
+   Style.css - Complete Code (April 27, 2025 - 18:43 CEST)
    Includes Base, Header (w/ SVG Icon Styling),
    Hero Slideshow, Product Section (BG Image, Cards),
    Range Section (using .contact classes),
-   About Section (BG Image, 75vh min-height),
-   Footer (updated layout), Buttons,
-   and Responsive Styles.
+   About Preview Section (BG Image, 75vh min-height),
+   About Text Section, Footer (updated layout), Buttons,
+   Contact Section Mobile Fixes, and Responsive Styles.
    ========================================= */
 
 /* --- Basic Reset & Body --- */
@@ -16,7 +16,7 @@
 }
 
 html {
-    scroll-behavior: smooth; /* Optional: Smooth scrolling for anchor links */
+    scroll-behavior: smooth; /* Enable Smooth scrolling */
 }
 
 body {
@@ -71,7 +71,7 @@ ul {
 }
 
 .site-header .logo img {
-    max-height: 150px; /* Adjust logo size */
+    max-height: 150px; /* User specified logo height */
 }
 
 .main-nav ul {
@@ -181,7 +181,6 @@ ul {
     position: relative; /* Ensure content stacks correctly */
     z-index: 3;         /* Make sure content is above the background */
     padding: 20px; /* Add padding for content */
-    /* Uses .container class from HTML for width/centering */
 }
 
 .slide-content h1 {
@@ -212,616 +211,277 @@ ul {
     cursor: pointer;
     transition: background-color 0.3s ease;
     border-radius: 4px;
-    line-height: 1; /* Fix potential alignment issues */
+    line-height: 1;
 }
 
-.slide-arrow:hover {
-    background-color: rgba(0, 0, 0, 0.6);
-}
+.slide-arrow:hover { background-color: rgba(0, 0, 0, 0.6); }
+.slide-arrow.prev { left: 20px; }
+.slide-arrow.next { right: 20px; }
 
-.slide-arrow.prev {
-    left: 20px;
-}
-
-.slide-arrow.next {
-    right: 20px;
-}
-
-.dots-container {
-    position: absolute;
-    bottom: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 4; /* Above slides */
-    display: flex;
-}
-
-.dot {
-    width: 12px;
-    height: 12px;
-    background-color: rgba(255, 255, 255, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    margin: 0 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.dot:hover {
-    background-color: rgba(255, 255, 255, 0.7);
-}
-
-.dot.active {
-    background-color: #fff;
-    transform: scale(1.2); /* Make active dot slightly larger */
-}
+.dots-container { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); z-index: 4; display: flex; }
+.dot { width: 12px; height: 12px; background-color: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 50%; margin: 0 6px; cursor: pointer; transition: background-color 0.3s ease, transform 0.3s ease; }
+.dot:hover { background-color: rgba(255, 255, 255, 0.7); }
+.dot.active { background-color: #fff; transform: scale(1.2); }
 
 /* --- Buttons --- */
-.btn {
-    display: inline-block;
-    padding: 12px 28px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    text-align: center;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
-    font-size: 1em;
-}
-
-.btn:hover {
-    transform: translateY(-2px); /* Slight lift on hover */
-}
-
-.btn-primary {
-    background-color: #c47d30; /* Primary button color */
-    color: #fff;
-}
-
-.btn-primary:hover {
-    background-color: #a06726; /* Darker shade on hover */
-}
-
-.btn-secondary {
-    background-color: #6c757d; /* Secondary button color */
-    color: #fff;
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-}
-
-/* Base outline button style (modified later for dark BG) */
-.btn-outline {
-    background-color: transparent;
-    color: #5a3a1a; /* Outline button text color for light BG */
-    border: 2px solid #5a3a1a; /* Outline button border for light BG */
-}
-.btn-outline:hover {
-    background-color: #5a3a1a;
-    color: #fff;
-}
+.btn { display: inline-block; padding: 12px 28px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; text-align: center; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease; font-size: 1em; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background-color: #c47d30; color: #fff; }
+.btn-primary:hover { background-color: #a06726; }
+.btn-secondary { background-color: #6c757d; color: #fff; }
+.btn-secondary:hover { background-color: #5a6268; }
+.btn-outline { background-color: transparent; color: #5a3a1a; border: 2px solid #5a3a1a; }
+.btn-outline:hover { background-color: #5a3a1a; color: #fff; }
 
 
-/* --- Featured Products (Section with BG Image) --- */
+/* --- Featured Products (Used for Biltong Range Section with ID #biltong) --- */
+/* Note: This section has a background image/overlay styling */
 .featured-products {
-    padding: 100px 0; /* Increased padding for more height */
-    position: relative; /* Needed for the overlay pseudo-element */
-    background-color: #555; /* Fallback color */
-    background-image: url('placeholder-bg-products.jpg'); /* Add your image path */
+    padding: 100px 0;
+    position: relative;
+    background-color: #555;
+    background-image: url('placeholder-bg-products.jpg'); /* Ensure this image exists or change path */
     background-size: cover;
     background-position: center center;
-    color: #fff; /* Default text color changed to white */
-    z-index: 0; /* Base stacking context */
+    color: #fff;
+    z-index: 0;
 }
 
-/* Overlay for Featured Products */
 .featured-products::before {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black overlay */
-    z-index: 1; /* Place overlay between background and content */
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
 }
 
-/* Ensure content container is above the overlay */
-.featured-products .container {
-    position: relative; /* Position relative to stack above pseudo-element */
-    z-index: 2; /* Place content above overlay */
-}
+.featured-products .container { position: relative; z-index: 2; }
 
-/* Adjust heading color for contrast */
 .featured-products h2 {
     text-align: center;
     margin-bottom: 40px;
-    font-size: clamp(1.5em, 4vw, 2.2em); /* Responsive heading */
-    color: #fff; /* Heading color changed to white */
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Optional shadow */
+    font-size: clamp(1.5em, 4vw, 2.2em);
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
-    gap: 30px; /* Space between grid items */
-}
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
 
 .product-card {
     border: 1px solid #e0e0e0;
-    border-radius: 8px; /* Slightly more rounded */
-    overflow: hidden; /* Ensure image corners are rounded */
-    text-align: center;
-    background-color: #fff; /* Keep card background white */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex; /* Use flexbox for better content control */
-    flex-direction: column;
-    color: #333; /* Text inside card remains dark */
-}
-
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15); /* Enhanced shadow on hover */
-}
-
-.product-card img {
-    width: 100%;
-    height: 200px; /* Fixed height for consistency */
-    object-fit: cover; /* Scales image nicely */
-}
-
-.product-card h3 {
-    font-size: 1.25em;
-    margin: 15px 10px 5px; /* Adjust spacing */
-    color: #444; /* Ensure card heading is dark */
-}
-
-.product-card .price {
-    font-weight: bold;
-    color: #c47d30; /* Price color */
-    margin-bottom: 15px;
-    font-size: 1.1em;
-}
-
-.product-card .btn { /* Styling for button inside card */
-    margin: 0 20px 20px; /* Position button at bottom */
-    margin-top: auto; /* Push button to bottom of flex container */
-}
-
-/* --- Styling for Section using 'contact' classes (Biltong Range) --- */
-.contact { /* Styles the main section wrapper */
-    padding: 60px 0;
-    background-color: #fff; /* White background for this section */
-}
-
-.contact h2 { /* Styles the 'Biltong Range' heading */
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: clamp(1.5em, 4vw, 2.2em); /* Responsive heading */
-    color: #333;
-}
-
-.contact-grid { /* Styles the grid container */
-    display: grid;
-    /* Adjust minmax for potentially smaller cards if using icons */
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 25px; /* Slightly smaller gap */
-}
-
-.contact-card { /* Styles the individual cards */
-    background-color: #f8f8f8; /* Light background for card */
-    border: 1px solid #eee;
     border-radius: 8px;
-    padding: 25px 20px;
+    overflow: hidden;
     text-align: center;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.contact-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-}
-
-.contact-card img { /* Styles the image inside the card */
-    max-height: 80px; /* Control icon/image height */
-    width: auto;      /* Maintain aspect ratio */
-    max-width: 100%;  /* Ensure image doesn't overflow card */
-    margin: 0 auto 20px auto; /* Center image horizontally and add space below */
-    object-fit: contain; /* Scale image nicely within bounds */
-}
-
-.contact-card h3 { /* Styles the heading (e.g., 'Beef Biltong') inside the card */
-    font-size: 1.15em;
-    color: #444;
-    margin: 0; /* Remove default margin if any */
-}
-
-/* --- About Preview (Section with BG Image & 75vh Height) --- */
-.about-text {
-    /* Height Adjustment */
-    min-height: 50vh; /* Minimum height is 75% of viewport height */
-    padding: 60px 0; /* Reduced padding, height primarily from min-height. Keep some for spacing. */
-
-    /* Flexbox for Centering Content */
-    display: flex;           /* Enable Flexbox */
-    align-items: center;     /* Vertical centering */
-    justify-content: center; /* Horizontal centering */
-
-    /* Background Image & Overlay Setup */
-    position: relative; /* Needed for the overlay pseudo-element */
-    background-color: #ed4c35; /* Fallback color */
-    text-align: center; /* Center text within the container */
-    color: #fff; /* Default text color changed to white */
-    z-index: 0; /* Base stacking context */
-}
-
-/* Overlay for About Preview */
-.about-text::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1; /* Place overlay between background and content */
-}
-
-/* Ensure content container is above the overlay and handles content layout*/
-.about-text .container {
-    position: relative; /* Position relative to stack above pseudo-element */
-    z-index: 2; /* Place content above overlay */
-    /* Added flex here to control inner content stacking and max-width */
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center items horizontally in the container */
-    width: 90%; /* Ensure container width is respected */
-    max-width: 650px; /* Max width for the text content itself */
+    color: #333; /* Text inside card is dark */
 }
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+.product-card img { width: 100%; height: 200px; object-fit: cover; }
+.product-card h3 { font-size: 1.25em; margin: 15px 10px 5px; color: #444; }
+.product-card .price { font-weight: bold; color: #c47d30; margin-bottom: 15px; font-size: 1.1em; }
+.product-card .btn { margin: 0 20px 20px; margin-top: auto; }
 
-/* Adjust heading and text color for contrast */
+
+/* --- Styling for Section with ID #contact (Contact Us) --- */
+.contact { padding: 60px 0; background-color: #fff; }
+.contact h2 { text-align: center; margin-bottom: 40px; font-size: clamp(1.5em, 4vw, 2.2em); color: #333; }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 25px; }
+.contact-card { background-color: #f8f8f8; border: 1px solid #eee; border-radius: 8px; padding: 25px 20px; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.contact-card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+.contact-card img { max-height: 80px; width: auto; max-width: 100%; margin: 0 auto 20px auto; object-fit: contain; }
+.contact-card h3 { font-size: 1.15em; color: #444; margin: 0 0 10px 0; /* Added margin bottom */ }
+/* Styling for text/links inside contact card */
+.contact-card p,
+.contact-card span,
+.contact-card a { font-size: 0.95em; color: #555; line-height: 1.5; word-wrap: break-word; overflow-wrap: break-word; }
+.contact-card a { color: #c47d30; }
+.contact-card a:hover { color: #a06726; }
+
+
+/* --- About Text Section (Used for ID #about) --- */
+/* NOTE: CSS targets the class name used in HTML: .about-text */
+.about-text {
+    padding: 60px 0;
+    background-color: #ed4c35; /* User specified background */
+    color: #fff; /* Set default text color for section */
+    min-height: 50vh; /* User specified height */
+    display: flex; /* Added flex for centering */
+    align-items: center; /* Added flex for centering */
+    justify-content: center; /* Added flex for centering */
+    text-align: center; /* Center text */
+}
+.about-text .container {
+    /* No extra position/z-index needed if no overlay */
+    max-width: 800px; /* Limit container width */
+}
 .about-text h2 {
-     margin-bottom: 15px;
-     font-size: clamp(3em, 4vw, 2.2em);
-     color: #fff; /* Heading color changed to white */
-     text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Optional shadow */
+    text-align: center;
+    font-size: clamp(3em, 4vw, 2.2em); /* User specified size */
+    color: #fff; /* Ensure heading is white */
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
-
 .about-text p {
-     margin-bottom: 30px;
-     font-size: 2em;
-     /* max-width is now on the container */
-     color: #f0f0f0; /* Lighter text color */
-     line-height: 1.1;
-     text-shadow: 1px 1px 2px rgba(0,0,0,0.4); /* Optional shadow */
+    /* max-width: 800px; */ /* Width controlled by container now */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    color: #f0f0f0; /* User specified color */
+    line-height: 1.1; /* User specified */
+    font-size: 2em; /* User specified */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
 }
-
-/* Update outline button style specifically for this dark section */
-.about-text .btn-outline {
-    background-color: transparent;
-    color: #fff; /* Button text white */
-    border: 2px solid #fff; /* Button border white */
-}
-
-.about-text .btn-outline:hover {
-    background-color: #fff; /* White background on hover */
-    color: #333; /* Dark text on hover */
-    border-color: #fff;
-}
+.about-text p:last-of-type { margin-bottom: 0; }
 
 
-/* --- About Preview (Section with BG Image & 75vh Height) --- */
+/* --- About Preview Section (Used for Nationwide Delivery) --- */
+/* NOTE: This section uses class="about-preview" in HTML */
 .about-preview {
-    /* Height Adjustment */
-    min-height: 75vh; /* Minimum height is 75% of viewport height */
-    padding: 60px 0; /* Reduced padding, height primarily from min-height. Keep some for spacing. */
-
-    /* Flexbox for Centering Content */
-    display: flex;           /* Enable Flexbox */
-    align-items: center;     /* Vertical centering */
-    justify-content: center; /* Horizontal centering */
-
-    /* Background Image & Overlay Setup */
-    position: relative; /* Needed for the overlay pseudo-element */
-    background-color: #444; /* Fallback color */
-    background-image: url('./img/nationwide.jpg'); /* Add your image path */
+    min-height: 75vh;
+    padding: 60px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: #444;
+    background-image: url('./img/nationwide.jpg'); /* User specified image */
     background-size: cover;
     background-position: center center;
-    text-align: center; /* Center text within the container */
-    color: #fff; /* Default text color changed to white */
-    z-index: 0; /* Base stacking context */
+    text-align: center;
+    color: #fff;
+    z-index: 0;
 }
 
-/* Overlay for About Preview */
 .about-preview::before {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(40, 40, 40, 0.7); /* Semi-transparent overlay */
-    z-index: 1; /* Place overlay between background and content */
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(40, 40, 40, 0.7);
+    z-index: 1;
 }
 
-/* Ensure content container is above the overlay and handles content layout*/
 .about-preview .container {
-    position: relative; /* Position relative to stack above pseudo-element */
-    z-index: 2; /* Place content above overlay */
-    /* Added flex here to control inner content stacking and max-width */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center items horizontally in the container */
-    width: 90%; /* Ensure container width is respected */
-    max-width: 650px; /* Max width for the text content itself */
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
+    width: 90%; max-width: 650px;
 }
 
-/* Adjust heading and text color for contrast */
 .about-preview h2 {
-     margin-bottom: 15px;
-     font-size: clamp(3.5em, 4vw, 2.2em);
-     color: #fff; /* Heading color changed to white */
-     text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Optional shadow */
+    margin-bottom: 15px;
+    font-size: clamp(3.5em, 4vw, 2.2em); /* User specified */
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
-.about-preview p {
+.about-preview p { /* Note: The HTML for this section only had H2 */
      margin-bottom: 30px;
-     /* max-width is now on the container */
-     color: #f0f0f0; /* Lighter text color */
+     color: #f0f0f0;
      line-height: 1.7;
-     text-shadow: 1px 1px 2px rgba(0,0,0,0.4); /* Optional shadow */
+     text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
 }
-
-/* Update outline button style specifically for this dark section */
-.about-preview .btn-outline {
-    background-color: transparent;
-    color: #fff; /* Button text white */
-    border: 2px solid #fff; /* Button border white */
-}
-
-.about-preview .btn-outline:hover {
-    background-color: #fff; /* White background on hover */
-    color: #333; /* Dark text on hover */
-    border-color: #fff;
-}
-
 
 /* --- Footer --- */
-.site-footer {
-    background-color: #333; /* Dark footer background */
-    color: #ccc; /* Light text on dark background */
-    padding: 50px 0 20px;
-    font-size: 0.95em;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Should handle 4 columns */
-    gap: 40px;
-    margin-bottom: 40px;
-    align-items: start; /* Align items to the start (top) of the grid cells */
-}
-
-.footer-col h4 {
-    color: #fff; /* Footer heading color */
-    margin-bottom: 20px;
-    font-size: 1.1em;
-    position: relative;
-    padding-bottom: 10px;
-    display: inline-block; /* So underline only spans text */
-}
-/* Underline effect for footer headings */
-.footer-col h4::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 40px;
-    height: 2px;
-    background-color: #c47d30; /* Accent color */
-}
-
-.footer-col ul {
-    padding-left: 0; /* Remove default padding if any */
-}
-
-.footer-col ul li {
-    margin-bottom: 12px;
-}
-
-.footer-col ul li a,
-.footer-col p,
-.footer-col > a { /* Style paragraphs and direct links in footer column */
-    color: #ccc;
-    transition: color 0.3s ease;
-}
-
-.footer-col ul li a:hover,
-.footer-col > a:hover {
-    color: #fff;
-}
-
-.footer-col p {
-     margin-bottom: 10px;
-     line-height: 1.7;
-}
-
-/* Style for the logo in the footer */
-.footer-logo {
-    max-width: 150px; /* Control logo size */
-    margin-bottom: 20px; /* Space below logo */
-}
-
-/* Style for the text below the logo */
-.footer-text {
-    font-size: 0.9em; /* Slightly smaller text */
-    line-height: 1.6;
-    color: #bbb; /* Slightly lighter than main footer text */
-    margin-bottom: 20px; /* Ensure space at bottom if column stacks */
-}
-
-/* Ensure social links display nicely */
-.footer-col > a {
-    margin-right: 10px;
-    margin-bottom: 8px; /* Add space below stacked links */
-    display: inline-block;
-}
-
-
-.copyright {
-    text-align: center;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #444; /* Separator line */
-    font-size: 0.9em;
-    color: #aaa;
-}
+.site-footer { background-color: #333; color: #ccc; padding: 50px 0 20px; font-size: 0.95em; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; align-items: start; }
+.footer-col h4 { color: #fff; margin-bottom: 20px; font-size: 1.1em; position: relative; padding-bottom: 10px; display: inline-block; }
+.footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 2px; background-color: #c47d30; }
+.footer-col ul { padding-left: 0; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col ul li a, .footer-col p, .footer-col > a { color: #ccc; transition: color 0.3s ease; }
+.footer-col ul li a:hover, .footer-col > a:hover { color: #fff; }
+.footer-col p { margin-bottom: 10px; line-height: 1.7; }
+.footer-logo { max-width: 150px; margin-bottom: 20px; } /* Applies to footer logo */
+.footer-text { font-size: 0.9em; line-height: 1.6; color: #bbb; margin-bottom: 20px; }
+.footer-col > a { margin-right: 10px; margin-bottom: 8px; display: inline-block; }
+.copyright { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #444; font-size: 0.9em; color: #aaa; }
 
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
-    .site-header .container {
-        flex-direction: column;
-        align-items: center;
-    }
-    .site-header .logo {
-        margin-bottom: 10px;
-    }
-    .main-nav {
-        margin-top: 10px;
-        width: 100%; /* Ensure nav takes full width */
-        margin-bottom: 10px; /* Space before social icons */
-    }
-    .main-nav ul {
-        justify-content: center;
-        padding-left: 0; /* Remove padding */
-    }
-     .main-nav ul li {
-        margin: 5px 8px; /* Adjust spacing for smaller screens */
-    }
+    .site-header .container { flex-direction: column; align-items: center; }
+    .site-header .logo { margin-bottom: 10px; }
+    .main-nav { margin-top: 10px; width: 100%; margin-bottom: 10px; }
+    .main-nav ul { justify-content: center; padding-left: 0; }
+    .main-nav ul li { margin: 5px 8px; }
+    .header-social-links { margin-top: 10px; width: 100%; justify-content: center; }
+    .social-icon { margin-left: 8px; margin-right: 8px; }
 
-    /* Align social links center when stacked */
-    .header-social-links {
-        margin-top: 10px;
-        width: 100%;
-        justify-content: center;
-    }
-    .social-icon {
-        margin-left: 8px;
-        margin-right: 8px;
-    }
-
-
-    .slide-arrow {
-        font-size: 20px;
-        padding: 8px 12px;
-    }
+    .slide-arrow { font-size: 20px; padding: 8px 12px; }
     .slide-arrow.prev { left: 10px; }
     .slide-arrow.next { right: 10px; }
-
     .dots-container { bottom: 15px; }
     .dot { width: 10px; height: 10px; margin: 0 4px;}
 
-    /* Adjust padding for sections on smaller screens */
-    .featured-products {
-        padding: 80px 0;
-    }
-    .contact {
-        padding: 50px 0;
-    }
-    .about-preview {
-         min-height: 60vh; /* Reduce min-height slightly on tablets */
-         padding: 50px 0;
-    }
+    .featured-products { padding: 80px 0; }
+    .contact { padding: 50px 0; }
+    .about-preview { min-height: 60vh; padding: 50px 0; }
+    .about-text { min-height: 40vh; padding: 50px 0; } /* Adjusted about-text */
+    .about-text h2 { font-size: clamp(2.5em, 4vw, 2.2em); } /* Adjusted about-text */
+    .about-text p { font-size: 1.5em; max-width: 95%; } /* Adjusted about-text */
 
 
-    .footer-grid {
-        grid-template-columns: 1fr; /* Stack footer columns */
-        text-align: center; /* Center align stacked columns */
-        gap: 30px; /* Reduce gap when stacked */
-    }
-     /* Center logo and text when stacked */
-    .footer-col-about {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .footer-col h4 {
-        display: block; /* Ensure heading takes full width */
-        text-align: center; /* Center heading text */
-    }
-     /* Center heading underline effect on mobile */
-    .footer-col h4::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+    .footer-col-about { display: flex; flex-direction: column; align-items: center; }
+    .footer-col h4 { display: block; text-align: center; }
+    .footer-col h4::after { left: 50%; transform: translateX(-50%); }
 }
 
 @media (max-width: 480px) {
-    .container {
-        width: 95%;
-        padding: 0 15px;
-    }
-    .main-nav ul li {
-        margin: 5px; /* Further reduce margin */
-    }
-     .main-nav ul li a {
-        padding: 5px; /* Reduce padding on nav links */
-    }
+    .container { width: 95%; padding: 0 15px; }
+    .main-nav ul li { margin: 5px; }
+    .main-nav ul li a { padding: 5px; }
 
-    .product-grid {
-        grid-template-columns: 1fr; /* Single column product grid */
-        gap: 20px;
-    }
-    .product-card {
-        max-width: 300px; /* Limit width on very small screens */
-        margin-left: auto;
-        margin-right: auto;
-    }
+    .product-grid { grid-template-columns: 1fr; gap: 20px; }
+    .product-card { max-width: 300px; margin-left: auto; margin-right: auto; }
 
-    .btn {
-        padding: 10px 20px;
-        font-size: 0.9em;
-    }
+    .btn { padding: 10px 20px; font-size: 0.9em; }
 
-    /* Adjust slide text size more */
-     .slide-content h1 { font-size: clamp(1.6em, 6vw, 2.2em); }
-     .slide-content p { font-size: clamp(0.9em, 3vw, 1em); }
+    .slide-content h1 { font-size: clamp(1.6em, 6vw, 2.2em); }
+    .slide-content p { font-size: clamp(0.9em, 3vw, 1em); }
 
-    /* Adjust section padding more on smallest screens */
     .featured-products { padding: 60px 0; }
     .contact { padding: 40px 0; }
-    .about-preview {
-         min-height: 50vh; /* Further reduce min-height on phones */
-         padding: 40px 0;
-    }
+    .about-preview { min-height: 50vh; padding: 40px 0; }
+    .about-text { min-height: 30vh; padding: 40px 0; } /* Adjusted about-text */
+    .about-text h2 { font-size: clamp(2em, 4vw, 2.2em); } /* Adjusted about-text */
+    .about-text p { font-size: 1.2em; max-width: 100%; line-height: 1.6; } /* Adjusted about-text */
 
-    /* Adjust grid for 'contact' section on mobile */
+
+    /* --- Contact Section Mobile Fixes --- */
     .contact-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 20px;
+        grid-template-columns: 1fr; /* Force single column layout */
+        gap: 25px; /* Increase gap slightly for stacked items */
+        max-width: 320px; /* Optional: Limit width of the single column */
+        margin-left: auto; /* Center the single column if max-width is set */
+        margin-right: auto; /* Center the single column if max-width is set */
     }
     .contact-card {
         padding: 20px 15px;
     }
     .contact-card img {
-        max-height: 60px; /* Smaller icons on mobile */
+        max-height: 55px; /* Slightly smaller icons */
         margin-bottom: 15px;
     }
     .contact-card h3 {
-        font-size: 1.05em;
+        font-size: 1em; /* Slightly smaller heading */
+        margin-bottom: 8px; /* Adjust margin */
+    }
+    /* Style for text inside card on mobile */
+    .contact-card p,
+    .contact-card span,
+    .contact-card a {
+        font-size: 0.9em; /* Slightly smaller text on mobile */
+        line-height: 1.4;
+    }
+    /* --- End Contact Section Mobile Fixes --- */
+
+
+    .featured-products h2, .contact h2, .about-preview h2, .about-text h2 {
+        font-size: clamp(1.4em, 5vw, 1.8em); /* Combined heading adjustments */
     }
 
-
-    /* Adjust section heading size more */
-    .featured-products h2,
-    .contact h2,
-    .about-preview h2 {
-        font-size: clamp(1.4em, 5vw, 1.8em);
-    }
-
-    /* Adjust footer text size */
     .site-footer { font-size: 0.9em; }
     .footer-col h4 { font-size: 1em; }
 }
