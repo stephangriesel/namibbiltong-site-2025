@@ -70,7 +70,7 @@ ul {
 }
 
 .site-header .logo img {
-    max-height: 50px;
+    max-height: 150px;
     /* Reset to likely intended size, adjust if 150px was correct */
 }
 
