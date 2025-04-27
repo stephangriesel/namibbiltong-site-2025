@@ -746,10 +746,7 @@ ul {
         left: 50%;
         transform: translateX(-50%);
     }
-}
 
-/* --- Mobile Only --- */
-@media (max-width: 480px) {
     .container {
         width: 95%;
         padding: 0 15px;
@@ -855,7 +852,7 @@ ul {
         /* Space below heading */
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        text-align: left;
+        text-align: center;
         /* Left align heading */
     }
 
@@ -867,7 +864,7 @@ ul {
         /* Adjusted detail text size */
         line-height: 1.5;
         color: #555;
-        text-align: left;
+        text-align: center;
         /* Left align detail text */
         display: block;
         /* Ensure block display for alignment */
