@@ -428,7 +428,7 @@ ul {
     .footer-col h4::after { left: 50%; transform: translateX(-50%); }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .container { width: 95%; padding: 0 15px; }
     .main-nav ul li { margin: 5px; }
     .main-nav ul li a { padding: 5px; }
@@ -452,8 +452,8 @@ ul {
     /* --- Contact Section Mobile Fixes --- */
     .contact-grid {
         grid-template-columns: 1fr; /* Force single column layout */
-        gap: 25px; /* Increase gap slightly for stacked items */
-        max-width: 320px; /* Optional: Limit width of the single column */
+        gap: 20px; /* Increase gap slightly for stacked items */
+        max-width: 325px; /* Optional: Limit width of the single column */
         margin-left: auto; /* Center the single column if max-width is set */
         margin-right: auto; /* Center the single column if max-width is set */
     }
