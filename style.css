@@ -1,11 +1,10 @@
 /* =========================================
-   Style.css - Refactored & Commented
+   Style.css - Complete Refactored Code
    Date: April 28, 2025
-   - Added comments per section.
-   - Merged duplicate media queries.
-   - Reordered/separated media queries.
-   - Applied mobile fixes for contact cards (full-width, left-align text).
-   - Corrected potential header logo size typo.
+   - Comments per section.
+   - Merged & reordered media queries.
+   - Mobile fixes for contact cards applied.
+   - Header/Footer icon colors defined separately.
    ========================================= */
 
 /* ========== Basic Reset & Body ========== */
@@ -46,7 +45,6 @@ a {
     color: #c47d30; /* Theme link color */
     transition: color 0.3s ease;
 }
-
 a:hover {
     color: #a06726; /* Darker link hover color */
 }
@@ -74,7 +72,7 @@ ul {
 }
 
 .site-header .logo img {
-    max-height: 160px; /* Adjusted logo size (was 150px, likely typo) */
+    max-height: 180px; /* Adjusted logo size */
 }
 
 /* --- Header Navigation --- */
@@ -118,15 +116,16 @@ ul {
     transform: scale(1.1); /* Slight zoom effect on hover */
 }
 
-/* Styling for SVG Icons in Header */
+/* Styling for SVG Icons (General - applies to Header by default) */
 .social-icon svg {
-    color: black; /* Sets color for 'currentColor' in SVG */
+    color: black; /* Default/Header icon color */
     width: 22px;
     height: 22px;
     vertical-align: middle; /* Helps align icon nicely */
     transition: color 0.3s ease;
 }
 
+/* Header specific SVG hover color */
 .social-icon:hover svg {
      color: #c47d30; /* Change SVG color on hover */
 }
@@ -209,8 +208,8 @@ ul {
 .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
 .product-card img { width: 100%; height: 200px; object-fit: cover; }
 .product-card h3 { font-size: 1.25em; margin: 15px 10px 5px; color: #444; }
-.product-card .price { font-weight: bold; color: #c47d30; margin-bottom: 15px; font-size: 1.1em; } /* Price element not currently in HTML */
-.product-card .btn { margin: 0 20px 20px; margin-top: auto; } /* Button element not currently in HTML */
+/* .product-card .price { font-weight: bold; color: #c47d30; margin-bottom: 15px; font-size: 1.1em; } */ /* Price element not currently in HTML */
+/* .product-card .btn { margin: 0 20px 20px; margin-top: auto; } */ /* Button element not currently in HTML */
 
 
 /* ========== Contact Us Section ========== */
@@ -246,7 +245,7 @@ ul {
 
 /* ========== About Preview Section (Nationwide Delivery) ========== */
 /* Applied to section which uses class="about-preview" */
-/* Note: This section has tall height, background image, and overlay styling */
+/* Note: This styling includes tall height, background image, and overlay */
 .about-preview {
     min-height: 75vh; padding: 60px 0; display: flex; align-items: center; justify-content: center;
     position: relative; background-color: #444;
@@ -273,8 +272,16 @@ ul {
 
 /* --- Footer Social Links & Phone --- */
 .footer-social-links { margin-bottom: 15px; }
-.footer-social-links .social-icon svg { color: #ccc; width: 28px; height: 28px; transition: color 0.3s ease; }
-.footer-social-links .social-icon:hover svg { color: #fff; }
+/* Specific styling for Footer SVG Icons */
+.footer-social-links .social-icon svg {
+    color: #ccc; /* Footer icon base color */
+    width: 28px;
+    height: 28px;
+    transition: color 0.3s ease;
+}
+.footer-social-links .social-icon:hover svg {
+    color: #fff; /* Footer icon hover color */
+}
 .footer-phone { font-size: 1em; font-weight: 500; }
 
 /* --- Footer Copyright --- */
@@ -315,7 +322,7 @@ ul {
 
     /* --- Footer Responsive --- */
     .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; /* Increased gap for stacking */ }
-    /* Centering already handled by .footer-col flex properties */
+    /* Centering handled by .footer-col flex properties, no need for extra rules here */
 }
 
 /* ========== Mobile Only ========== */
@@ -388,7 +395,6 @@ ul {
 
     /* Footer text size adjustments */
     .site-footer { font-size: 0.9em; }
-    .footer-col h4 { font-size: 1em; } /* Though H4 is removed from HTML now */
     .footer-grid { gap: 30px; } /* Reduce gap further on smallest screens */
     .footer-col p, .footer-col a, .footer-text { font-size: 0.9em; }
     .footer-phone { font-size: 0.95em; }
